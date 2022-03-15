@@ -1,0 +1,1651 @@
+/*Profile Image PopUp*/
+.popupee {
+  width: 900px;
+  margin: auto;
+  text-align: center;
+}
+.popupee img {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+.show {
+  z-index: 999;
+  display: none;
+}
+.show .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.show .img-show {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+}
+.img-show span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 999;
+  cursor: pointer;
+}
+.img-show img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*navigation */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --clr: #1a1a1a;
+}
+
+.body {
+  min-height: 100vh;
+  background: var(--clr);
+  display: flex;
+}
+
+.navigation {
+  position: relative;
+  width: 400px;
+  height: 70px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.navigation ul {
+  display: flex;
+  width: 350px;
+}
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 70px;
+  height: 45px;
+  z-index: 1;
+}
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 55px;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: var(--clr);
+}
+.navigation ul li.active a .icon {
+  transform: translateY(-22px);
+}
+.navigation ul li a .text {
+  position: absolute;
+  color: var(--clr);
+  font-weight: 400;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.navigation ul li.active a .text {
+  opacity: 1;
+  transform: translateY(25px);
+}
+.indicator {
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background: #29fd53;
+  border-radius: 50%;
+  border: 6px solid var(--clr);
+  transition: 0.5s;
+}
+.indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 0px -10px 0 0 var(--clr);
+}
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: 0px -10px 0 0 var(--clr);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator {
+  transform: translateX(calc(70px * 4));
+}
+
+/*Tubelight Font*/
+
+h3 {
+  position: relative;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #666666;
+  width: 100%;
+  text-align: center;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+  line-height: 0.4em;
+  outline: none;
+  animation: animate5 5s linear infinite;
+  z-index: -1;
+}
+
+@keyframes animate5 {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #737373;
+    text-shadow: none;
+  }
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #fff;
+    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 40px #00ff99,
+      0 0 80px #00ff99, 0 0 160px #00ff99;
+  }
+}
+
+/* h4 {
+  position: relative;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #666666;
+  width: 100%;
+  text-align: center;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0008);
+  line-height: 0.4em;
+  outline: none;
+  animation: animate6 5s linear infinite;
+  z-index: 1000;
+}
+
+@keyframes animate6 {
+  0%,
+  18%,
+  20%,
+  50.1%,
+  60%,
+  65.1%,
+  80%,
+  90.1%,
+  92% {
+    color: #737373;
+    text-shadow: none;
+  }
+  18.1%,
+  20.1%,
+  30%,
+  50%,
+  60.1%,
+  65%,
+  80.1%,
+  90%,
+  92.1%,
+  100% {
+    color: #fff;
+    text-shadow: 0 0 10px #ff0066, 0 0 20px #ff0066, 0 0 40px #ff0066,
+      0 0 80px #ff0066, 0 0 160px #ff0066;
+  }
+}*/
+
+/* Upload Form elements  */
+
+.newsmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 500px;
+  max-width: 80%;
+}
+
+.newsmodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*.newsmodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}*/
+
+.newsmodal .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.newsmodal-body {
+  padding: 3px 15px;
+}
+
+/*Innovation-modal*/
+
+.innovationmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 500px;
+  max-width: 80%;
+  height: 750px;
+}
+
+.innovationmodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*.innovationmodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}*/
+
+.innovationmodal .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.innovationmodal-body {
+  padding: 3px 15px;
+}
+
+/*Sport Person -modal*/
+
+.sportmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 500px;
+  max-width: 80%;
+}
+
+.sportmodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*.innovationmodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}*/
+
+.sportmodal .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.sportmodal-body {
+  padding: 3px 15px;
+}
+
+/*overlay Effect*/
+
+#overlay1 {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay1.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#overlay2 {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay2.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#overlay3 {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+#overlay3.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Form Elements */
+
+.form {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  padding: 40px;
+  top: 0%;
+}
+
+.form h2 {
+  position: relative;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.form h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 80px;
+  height: 4px;
+  background: #fff;
+}
+
+.form .inputbox {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form .inputbox input {
+  width: 100%;
+  height: 55px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.form .inputbox input::placeholder {
+  color: #fff;
+}
+.form .inputbox input[type="submit"] {
+  background: #fff;
+  color: #666;
+  max-width: 100px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Upload  Clay */
+
+.clay button {
+  margin: 1em;
+  border: none;
+  font-size: 1.4em;
+  background: #7ca2ff;
+  padding: 0.8em 1.5em;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(47, 107, 255, 0.6),
+    inset 0.1em 0.1em 0.4em #4379ff, inset -0.2em -0.2em 0.8em #004aff;
+
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.clay button:hover {
+  margin: 1em;
+  border: none;
+  font-size: 1.4em;
+  background: #4d94ff;
+  padding: 0.8em 1.5em;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.5em;
+  box-shadow: 0 0.5em 1em rgba(47, 107, 255, 0.8),
+    inset 0.1em 0.2em 0.9em #4379ff, inset -0.2em -0.2em 0.9em #004aff;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/*  Change Password Form Elements - Clay form  */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container2 {
+  position: relative;
+  width: 350px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  border-radius: 30px;
+  padding: 50px;
+}
+
+form {
+  position: relative;
+  width: 100%;
+}
+
+.container2 h5 {
+  color: #000;
+  font-weight: 600;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.inputBox-clay {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputBox-clay span {
+  display: inline-block;
+  color: #000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.75em;
+  border-left: 4px solid #000;
+  padding-left: 4px;
+  line-height: 1em;
+}
+
+.inputBox-clay .box-clay {
+  display: flex;
+}
+
+.inputBox-clay .box-clay .icons {
+  position: relative;
+  min-width: 40px;
+  height: 40px;
+  background: #ff2c74;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #000;
+  font-size: 1.15em;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.inputBox-clay .box-clay input {
+  position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85em;
+  border-radius: 30px;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.35),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.inputBox-clay .box-clay input[type="submit"] {
+  background: #1f83f2;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.35),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  color: #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* Update  Profile Form - Clay card form */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.container3 {
+  position: relative;
+  width: 450px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  border-radius: 30px;
+  padding: 50px;
+}
+
+.container4 {
+  position: relative;
+  width: 250px;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  border-radius: 30px;
+  padding: 50px;
+}
+
+form {
+  position: relative;
+  width: 100%;
+}
+
+.container3 h6 {
+  color: #000;
+  font-weight: 600;
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.inputBox-clayee {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputBox-clayee span {
+  display: inline-block;
+  color: #000;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.75em;
+  border-left: 4px solid #000;
+  padding-left: 4px;
+  line-height: 1em;
+}
+
+.inputBox-clayee .box-clayee {
+  display: flex;
+}
+
+.inputBox-clayee .box-clayee .icons {
+  position: relative;
+  min-width: 40px;
+  height: 40px;
+  background: #ff2c74;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #000;
+  font-size: 1.15em;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.25),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.inputBox-clayee .box-clayee .inputclayee {
+  position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+
+  letter-spacing: 1px;
+  font-size: 0.85em;
+  border-radius: 30px;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.35),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+}
+
+.inputBox-clayee .box-clayee .inputclayee[type="submit"] {
+  background: #1f83f2;
+  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.35),
+    inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  color: #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/*Edit Pic Button
+
+.EditPicBtn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 36px;
+  margin: 10px 0;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  border-radius: 40px;
+  background: transparent;
+  border: 1px solid white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.EditPicBtn:hover {
+  background: white;
+  color: #000;
+}*/
+
+.submit-btn .submit {
+  background: white;
+  color: #004aff;
+}
+
+/* Contact Update Form*/
+
+section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: transparent;
+}
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+}
+
+section .container {
+  position: relative;
+  min-width: 1100px;
+  min-height: 550px;
+  display: flex;
+  z-index: 1000;
+}
+
+section .container .contactprofile {
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  height: calc(100% - 80px);
+  background: #0f3959;
+  z-index: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+}
+
+section .container .contactprofile h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+section .container .contactprofile .info {
+  position: relative;
+  margin: 20px 0;
+}
+section .container .contactprofile .info li {
+  position: relative;
+  list-style: none;
+  display: flex;
+  margin: 20px 0;
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+section .container .contactprofile .info li span:nth-child(1) {
+  width: 30px;
+  min-width: 30px;
+}
+
+section .container .contactprofile .info li span:nth-child(1) img {
+  width: 100%;
+  filter: invert(1);
+  opacity: 0.5;
+}
+
+section .container .contactprofile .info li span:nth-child(2) {
+  color: #fff;
+  margin-left: 10px;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+section
+  .container
+  .contactprofile
+  .info
+  li:hover
+  span:nth-child(1)
+  section
+  .container
+  .contactprofile
+  .info
+  li:hover
+  span:nth-child(2) {
+  opacity: 1;
+}
+
+section .container .contactprofile .sci {
+  position: relative;
+  display: flex;
+}
+
+section .container .contactprofile .sci li {
+  list-style: none;
+  margin-right: 15px;
+}
+
+section .container .contactprofile .sci li a {
+  text-decoration: none;
+}
+
+section .container .contactprofile .sci li a img {
+  filter: invert(1);
+  opacity: 0.5;
+}
+
+section .container .contactprofile .sci li:hover a img {
+  opacity: 1;
+}
+
+section .container .contactForm {
+  position: absolute;
+  padding: 70px 50px;
+  background: #fff;
+  margin-left: 150px;
+  padding-left: 250px;
+  width: calc(100% - 150px);
+  height: 100%;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
+}
+
+section .container .contactForm h2 {
+  color: #0f3959;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+section .container .contactForm .formBox {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 30px;
+}
+
+section .container .contactForm .formBox .inputBox {
+  position: relative;
+  margin: 0 0 35px 0;
+}
+
+section .container .contactForm .formBox .inputBox.w50 {
+  width: 47%;
+}
+
+section .container .contactForm .formBox .inputBox.w100 {
+  width: 100%;
+}
+
+section .container .contactForm .formBox .inputBox input {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #777;
+  outline: none;
+}
+
+section .container .contactForm .formBox .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+section .container .contactForm .formBox .inputBox input:focus ~ span,
+section .container .contactForm .formBox .inputBox input:valid ~ span {
+  transform: translateY(-20px);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #ff568c;
+}
+
+section .container .contactForm .formBox .inputBox input[type="submit"] {
+  position: relative;
+  cursor: pointer;
+  background: #0f3959;
+  color: #fff;
+  border: none;
+  max-width: 150px;
+  padding: 12px;
+}
+
+section .container .contactprofile .inputBox input[type="submit"] {
+  position: relative;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  border: none;
+  max-width: 170px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+section .container .contactForm .formBox .inputBox input[type="submit"]:hover {
+  background: #ff568c;
+  color: white;
+}
+
+section .container .contactprofile .inputBox input[type="submit"]:hover {
+  background: #ff568c;
+  color: white;
+  font-weight: 1.2em;
+}
+
+/*Glass List Details*/
+
+.seco {
+  position: relative;
+  background: transparent;
+  min-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glassbox {
+  position: relative;
+  min-width: 80%;
+  min-height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 1;
+  padding: 20px;
+  backdrop-filter: blur(25px);
+}
+
+.glassbox h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.glassbox .glasslist {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.glassbox .glasslist:hover {
+  background: #fff;
+  box-shadow: -15px 30px 50px rgba(0, 0, 0, 0.5);
+  transform: scale(1.15) translateX(30px) translateY(-15px);
+  z-index: 1000;
+}
+
+.glassbox .glasslist .imgBx {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.glassbox .glasslist .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glassbox .glasslist .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.glassbox .glasslist .content .rank {
+  position: absolute;
+  right: -50px;
+  color: #03a9f4;
+  transition: 0.5s;
+  font-size: 2em;
+}
+.glassbox .glasslist .content .view {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  right: 250px;
+  background-color: #29fd53;
+  color: #000;
+  transition: 0.5s;
+  font-size: 1.1em;
+  font-weight: 300;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  border: 2px solid #333;
+}
+.glassbox .glasslist .content .del {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  right: 180px;
+  background-color: #29fd53;
+  color: #000;
+  transition: 0.5s;
+  font-size: 1.1em;
+  font-weight: 300;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  border: 2px solid #333;
+}
+
+.glassbox .glasslist .content .rank small {
+  font-weight: 500;
+  opacity: 0.25;
+}
+
+.glassbox .glasslist:hover .content .rank {
+  right: 20px;
+}
+
+.glassbox .glasslist .content h4 {
+  line-height: 1.2em;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.glassbox .glasslist .content p {
+  line-height: 0.75em;
+  transition: 0.5s;
+}
+
+.glassbox .glasslist:hover .content h4,
+.glassbox .glasslist:hover .content p {
+  color: #333;
+}
+
+/*reco */
+
+.glassboxy {
+  position: relative;
+  min-width: 80%;
+  min-height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 1;
+  padding: 20px;
+  backdrop-filter: blur(25px);
+  overflow: hidden;
+}
+
+.glassboxy h2 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.glassboxy .glasslist {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.glassboxy .glasslist:hover {
+  background: #fff;
+  box-shadow: -2px 50px 80px rgba(0, 0, 0, 0.5);
+  transform: scale(1) translateX(10px) translateY(-5px);
+  z-index: 1000;
+}
+
+.glassboxy .glasslist .imgBx {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.glassboxy .glasslist .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.glassboxy .glasslist .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.glassboxy .glasslist .content .rank {
+  position: absolute;
+  right: 20px;
+  color: #03a9f4;
+  transition: 0.5s;
+  font-size: 2em;
+}
+.glassboxy .glasslist .content .view {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  right: 250px;
+  background-color: #29fd53;
+  color: #000;
+  transition: 0.5s;
+  font-size: 1.1em;
+  font-weight: 300;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  border: 2px solid #333;
+}
+.glassboxy .glasslist .content .del {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  right: 180px;
+  background-color: #29fd53;
+  color: #000;
+  transition: 0.5s;
+  font-size: 1.1em;
+  font-weight: 300;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  border: 2px solid #333;
+}
+
+.glassboxy .glasslist .content .rank small {
+  font-weight: 500;
+  opacity: 0.25;
+}
+
+/*.glassboxy .glasslist:hover .content .rank {
+  right: 20px;
+}*/
+
+.glassboxy .glasslist .content h4 {
+  line-height: 1.2em;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.glassboxy .glasslist .content p {
+  line-height: 0.75em;
+  transition: 0.5s;
+}
+
+.glassboxy .glasslist:hover .content h4,
+.glassboxy .glasslist:hover .content p {
+  color: #333;
+}
+/* Dropdown list */
+
+.dropdown {
+  position: relative;
+  margin-top: 100px;
+  width: 300px;
+  height: 50px;
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 999;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #333;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.dropdown.activate::before {
+  top: 22px;
+  transform: rotate(-225deg);
+}
+
+.dropdown input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  outline: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.dropdown .option {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+  z-index: 99;
+  background: #fff;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.dropdown.activate .option {
+  display: block;
+}
+
+.dropdown .option .dropee {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+.dropdown .option .dropee:hover {
+  background: #62baea;
+  color: #fff;
+}
+
+.dropdown .option .dropee ion-icon {
+  position: relative;
+  top: 4px;
+  font-size: 1.2em;
+}
+
+/*Mini moving nav*/
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a {
+  position: relative;
+  margin: 0 20px;
+  font-size: 2em;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav #small-marker {
+  position: absolute;
+  left: 0;
+  height: 4px;
+  width: 0;
+  background: #ff00ff;
+  bottom: -8px;
+  transition: 0.5s;
+  border-radius: 4px;
+}
+
+/*Files Uploading Forms elements*/
+section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: transparent;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+}
+section .formi-container {
+  position: relative;
+  min-width: 1100px;
+  min-height: 570px;
+  display: flex;
+  z-index: 100;
+  top: -120px;
+}
+
+section .formi-container .formi-contactinfo {
+  position: absolute;
+  top: 40px;
+  width: 350px;
+  height: calc(100% - 80px);
+  background: #0f3959;
+  z-index: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+}
+
+section .formi-container .formi-contactinfo h2 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+section .formi-container .formi-contactinfo .formi-info {
+  position: relative;
+  margin: 20px 0;
+}
+
+section .formi-container .formi-contactinfo .formi-info li {
+  position: relative;
+  list-style: none;
+  display: flex;
+  margin: 20px 0;
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+section .formi-container .formi-contactinfo .formi-info li span:nth-child(1) {
+  width: 30px;
+  min-width: 30px;
+}
+
+section
+  .formi-container
+  .formi-contactinfo
+  .formi-info
+  li
+  span:nth-child(2)
+  img {
+  max-width: 100%;
+  filter: invert(1);
+  opacity: 0.5;
+}
+
+section
+  .formi-container
+  .formi-contactinfo
+  .formi-info
+  li:hover
+  span:nth-child(1)
+  img,
+section
+  .formi-container
+  .formi-contactinfo
+  .formi-info
+  li:hover
+  span:nth-child(2) {
+  opacity: 1;
+}
+
+section .formi-container .formi-contactinfo .sci {
+  position: relative;
+  display: flex;
+}
+
+section .formi-container .formi-contactinfo .sci li {
+  list-style: none;
+  margin-right: 15px;
+}
+
+section .formi-container .formi-contactinfo .sci li a {
+  text-decoration: none;
+}
+
+section .formi-container .formi-contactinfo .sci li a img {
+  filter: invert(1);
+  opacity: 0.5;
+}
+
+section .formi-container .formi-contactinfo .sci li:hover a img {
+  opacity: 1;
+}
+
+section .formi-container .formi-contactForm {
+  position: absolute;
+  padding: 70px 50px;
+  background: #fff;
+  margin-left: 150px;
+  padding-left: 250px;
+  width: calc(100% - 150px);
+  height: 100%;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
+}
+
+section .formi-container .formi-contactForm h2 {
+  color: #0f3959;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+section .formi-container .formi-contactForm .formi-formBox {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 30px;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox {
+  position: relative;
+  margin: 0 0 35px 0;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox.w50 {
+  width: 47%;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox.w70 {
+  width: 53%;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox.w100 {
+  width: 100%;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox input,
+section .formi-container .formi-contactForm .formi-formBox .inputBox textarea {
+  width: 100%;
+  padding: 5px 0;
+  resize: none;
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #777;
+  outline: none;
+}
+
+section .formi-container .contactForm .formi-formBox .inputBox textarea {
+  min-height: 120px;
+}
+
+section .formi-container .formi-contactForm .formi-formBox .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #333;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  input:focus
+  ~ span,
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  textarea:focus
+  ~ span,
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  input:valid
+  ~ span,
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  textarea:valid
+  ~ span {
+  transform: translateY(-20px);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #ff568c;
+}
+
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  input[type="submit"] {
+  position: relative;
+  cursor: pointer;
+  background: #0f3959;
+  color: #fff;
+  border: none;
+  max-width: 150px;
+  padding: 12px;
+}
+
+section
+  .formi-container
+  .formi-contactForm
+  .formi-formBox
+  .inputBox
+  input[type="submit"]:hover {
+  background: #ff568c;
+}
